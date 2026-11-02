@@ -1,4 +1,3 @@
-```markdown
 # Diagram Komunikacji (UML Communication Diagram)
 
 Przedstawia strukturalny przepływ komunikatów (numerowanych sekwencyjnie) pomiędzy współpracującymi obiektami.
