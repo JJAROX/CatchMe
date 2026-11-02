@@ -1,8 +1,5 @@
-# Widok Procesu - Diagramy UML
+# Diagram Sekwencji (UML Sequence Diagram)
 
-Proces: Dodawanie nowej dyspozycyjności ("Dyspo") przez użytkownika.
-
-## 1. Diagram Sekwencji (UML Sequence Diagram)
 Przedstawia ułożony w czasie przebieg komunikacji pomiędzy aktorem a komponentami systemu.
 
 ```mermaid
@@ -27,19 +24,3 @@ sequenceDiagram
     
     VM-->>V: Aktualizacja listy `activeDyspos` (@Published)
     V-->>U: Arkusz znika, nowe dyspo widoczne na liście
-
-    
-flowchart LR
-    U((Użytkownik))
-    V[AddDyspoView]
-    VM[DashboardViewModel]
-    API[Node.js API]
-    DB[(PostgreSQL)]
-
-    U -- "1: Wypełnia formularz" --> V
-    V -- "2: addMyDyspo()" --> VM
-    VM -- "3: POST /api/dyspo" --> API
-    API -- "4: Wykonanie INSERT" --> DB
-    DB -- "5: Potwierdzenie DB" --> API
-    API -- "6: Zwraca odpowiedź 201" --> VM
-    VM -- "7: Renderuje nowy stan" --> V    
