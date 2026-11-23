@@ -1,19 +1,16 @@
+require('dotenv').config();
 const { Pool } = require('pg');
 
 const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'catchme_db',
-  password: 'twoje_haslo',
-  port: 5432,
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT || 5432,
 });
 
-pool.connect((err) => {
-    if (err) {
-        console.error('Błąd połączenia z bazą PostgreSQL:', err.stack);
-    } else {
-        console.log('Sukces: Połączono z bazą PostgreSQL - Persistent Storage aktywne.');
-    }
-});
+pool.query('SELECT NOW()')
+  .then(() => console.log('Sukces: Połączono z bazą PostgreSQL.'))
+  .catch((err) => console.error('Błąd połączenia z bazą PostgreSQL:', err.stack));
 
 module.exports = pool;
