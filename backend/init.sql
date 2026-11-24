@@ -24,3 +24,26 @@ CREATE TABLE IF NOT EXISTS friendships (
     status VARCHAR(20) NOT NULL DEFAULT 'pending',
     CONSTRAINT unique_friendship UNIQUE (user_id, friend_id)
 );
+
+CREATE TABLE IF NOT EXISTS groups (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    members_count INT NOT NULL DEFAULT 1,
+    next_meeting VARCHAR(150) NOT NULL DEFAULT 'Brak zaplanowanych spotkań',
+    invite_link VARCHAR(150) NOT NULL,
+    icon VARCHAR(50) NOT NULL DEFAULT 'person.3',
+    color_theme VARCHAR(20) NOT NULL DEFAULT 'green',
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS meetings (
+    id SERIAL PRIMARY KEY,
+    day_label VARCHAR(10) NOT NULL,
+    month_label VARCHAR(10) NOT NULL,
+    title VARCHAR(150) NOT NULL,
+    details VARCHAR(200) NOT NULL,
+    group_name VARCHAR(100) NOT NULL,
+    location_choice VARCHAR(100) NOT NULL,
+    is_highlighted BOOLEAN NOT NULL DEFAULT false,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);

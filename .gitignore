@@ -19,3 +19,5 @@ DerivedData/
 *.ipa
 *.xcuserstate
 .swiftpm/
+# Zmienne środowiskowe
+.env
